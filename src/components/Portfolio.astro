@@ -7,7 +7,13 @@ import stairsImg from '../assets/images/wood_stairs.png';
 import terraceImg from '../assets/images/wood_terrace.png';
 import dressingImg from '../assets/images/wood_dressing.png';
 
-const projects = [
+interface Props {
+  limit?: number;
+}
+
+const { limit } = Astro.props;
+
+const projectsList = [
   {
     title: "Cuisine Contemporaine en Chêne",
     category: "Cuisine sur-mesure",
@@ -45,6 +51,8 @@ const projects = [
     location: "Visé, Liège"
   }
 ];
+
+const projects = limit ? projectsList.slice(0, limit) : projectsList;
 ---
 
 <section id="portfolio" class="py-32 bg-[#FAF9F6]">
@@ -59,7 +67,7 @@ const projects = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+    <div class={`grid grid-cols-1 md:grid-cols-2 ${projects.length > 2 ? 'lg:grid-cols-3' : ''} gap-10`}>
       {projects.map((project, index) => (
         <div 
           class="group relative overflow-hidden rounded-[2.5rem] reveal bg-white"
