@@ -1,0 +1,92 @@
+---
+const reviews = [
+  {
+    name: "Pierre Debatty",
+    location: "Liège Centre",
+    text: "Un travail d'une précision incroyable pour ma nouvelle cuisine en chêne. L'artisan a su écouter mes besoins et proposer des solutions ingénieuses pour optimiser l'espace.",
+    rating: 5,
+    date: "Mars 2024"
+  },
+  {
+    name: "Sophie Marchal",
+    location: "Embourg",
+    text: "Nous avons fait appel à M.Menuiserie pour la pose d'un parquet massif et la rénovation de notre escalier. Le résultat dépasse nos attentes, les finitions sont impeccables.",
+    rating: 5,
+    date: "Février 2024"
+  },
+  {
+    name: "Marc Lambert",
+    location: "Chaudfontaine",
+    text: "Très satisfait du meuble TV sur-mesure réalisé. Un vrai professionnel qui connaît son métier et travaille proprement. Je recommande vivement pour tout projet bois.",
+    rating: 4.5,
+    date: "Janvier 2024"
+  }
+];
+
+const renderStars = (rating: number) => {
+  const stars = [];
+  for (let i = 1; i <= 5; i++) {
+    if (i <= Math.floor(rating)) {
+      stars.push(`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#5D4037" stroke="#5D4037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`);
+    } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
+      stars.push(`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5D4037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/><path d="M12 2v15.77" stroke-width="2"/><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77V2z" fill="#5D4037"/></svg>`);
+    } else {
+      stars.push(`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5D4037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`);
+    }
+  }
+  return stars.join('');
+};
+---
+
+<section class="py-32 bg-white overflow-hidden">
+  <div class="container mx-auto px-6 relative">
+    
+    <div class="max-w-3xl mb-20 reveal">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-[#5D4037] mb-4">Avis Clients</h2>
+      <p class="text-4xl md:text-5xl font-bold text-[#2D2D2D] leading-tight">
+        Ce que nos clients <span class="italic-serif text-3xl md:text-4xl text-gray-400">disent de nous</span>
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {reviews.map((review, index) => (
+        <div 
+          class="p-10 rounded-[2.5rem] bg-[#FAF9F6] border border-transparent hover:border-[#5D4037]/10 transition-all duration-500 reveal group"
+          style={`animation-delay: ${0.1 * index}s`}
+        >
+          <div class="flex gap-1 mb-8" set:html={renderStars(review.rating)}></div>
+          
+          <p class="text-lg text-[#2D2D2D]/80 leading-relaxed italic mb-10">
+            "{review.text}"
+          </p>
+
+          <div class="flex items-center gap-4 border-t border-black/5 pt-8">
+            <div class="w-12 h-12 rounded-full bg-[#5D4037] flex items-center justify-center text-white font-bold text-lg">
+              {review.name.charAt(0)}
+            </div>
+            <div>
+              <h4 class="font-bold text-[#2D2D2D]">{review.name}</h4>
+              <p class="text-xs text-gray-400 uppercase tracking-widest">{review.location}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-20 pt-20 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-10 reveal">
+        <div class="flex items-center gap-6">
+            <div class="text-5xl font-bold text-[#5D4037]">4.9<span class="text-xl text-gray-300">/5</span></div>
+            <div>
+                <p class="font-bold text-[#2D2D2D]">Note globale moyenne</p>
+                <p class="text-xs text-gray-400 uppercase tracking-widest">Basée sur plus de 50 projets à Liège</p>
+            </div>
+        </div>
+        <div class="flex -space-x-4">
+            <div class="w-12 h-12 rounded-full border-4 border-white bg-gray-200"></div>
+            <div class="w-12 h-12 rounded-full border-4 border-white bg-gray-300"></div>
+            <div class="w-12 h-12 rounded-full border-4 border-white bg-gray-400"></div>
+            <div class="w-12 h-12 rounded-full border-4 border-white bg-[#5D4037] flex items-center justify-center text-xs text-white font-bold">+50</div>
+        </div>
+    </div>
+  </div>
+</section>
