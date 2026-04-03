@@ -1,0 +1,19 @@
+---
+interface Props {
+    title: string;
+    subtitle: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<section class="pt-48 pb-20 bg-[#FAF9F6] border-b border-[#5D4037]/5">
+    <div class="container mx-auto px-6">
+        <h1 class="text-5xl md:text-7xl font-bold text-[#2D2D2D] mb-8 reveal">
+            {title}
+        </h1>
+        <p class="text-xl text-[#2D2D2D]/60 max-w-2xl reveal [animation-delay:0.1s]">
+            {subtitle}
+        </p>
+    </div>
+</section>

@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import Services from '../components/Services.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<BaseLayout 
+    title="Services de Menuiserie" 
+    description="Découvrez nos services complets de menuiserie à Liège : cuisines sur-mesure, pose de parquet, escaliers et aménagements bois."
+>
+    <Header />
+    <main>
+        <PageHero 
+            title="Nos Services" 
+            subtitle="De la conception à la pose, nous vous accompagnons dans tous vos projets de menuiserie avec une exigence de qualité artisanale."
+        />
+        <Services />
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+                <div class="reveal">
+                    <img src="/images/parquet_liege.png" alt="Savoir-faire menuiserie" class="rounded-[40px] shadow-2xl" />
+                </div>
+                <div class="reveal [animation-delay:0.2s]">
+                    <h2 class="text-3xl font-bold mb-6">Un engagement pour la qualité</h2>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Chaque essence de bois est sélectionnée avec soin. Nous privilégions les circuits courts et les matériaux durables pour des réalisations qui traversent les générations.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 font-bold text-[#5D4037]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Devis détaillé sous 24h
+                        </li>
+                        <li class="flex items-center gap-4 font-bold text-[#5D4037]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Respect des délais
+                        </li>
+                        <li class="flex items-center gap-4 font-bold text-[#5D4037]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Suivi personnalisé
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <Contact />
+    </main>
+    <Footer />
+</BaseLayout>

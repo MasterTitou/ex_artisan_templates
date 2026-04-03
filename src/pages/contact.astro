@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<BaseLayout 
+    title="Contact & Devis" 
+    description="Demandez votre devis gratuit pour votre projet de menuiserie à Liège. Nous vous répondons sous 24h."
+>
+    <Header />
+    <main>
+        <PageHero 
+            title="Prendre Contact" 
+            subtitle="Vous avez un projet ? Nous avons le savoir-faire. N'hésitez pas à nous appeler ou à nous envoyer un message via le formulaire ci-dessous."
+        />
+        <Contact />
+    </main>
+    <Footer />
+</BaseLayout>

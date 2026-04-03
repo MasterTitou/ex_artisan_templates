@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<BaseLayout 
+    title="Portfolio - Nos Réalisations" 
+    description="Découvrez nos derniers projets de menuiserie à Liège : parquets, cuisines, bibliothèques et mobilier sur-mesure."
+>
+    <Header />
+    <main>
+        <PageHero 
+            title="Notre Portfolio" 
+            subtitle="Explorez une sélection de nos travaux les plus récents à Liège et en province. Chaque projet est une nouvelle histoire à raconter."
+        />
+        <Portfolio />
+        <Contact />
+    </main>
+    <Footer />
+</BaseLayout>
