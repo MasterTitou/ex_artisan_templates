@@ -19,18 +19,18 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
     </button>
   </div>
-
-  <!-- Mobile Menu Mobile Overlay -->
-  <div id="mobile-menu" class="fixed inset-0 bg-[#FAF9F6] z-60 flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-500 ease-in-out md:hidden">
-    <button id="close-menu" class="absolute top-8 right-8 p-2 text-[#5D4037]">
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-    </button>
-    <a href="/services" class="text-3xl font-display font-bold text-[#5D4037]">Services</a>
-    <a href="/portfolio" class="text-3xl font-display font-bold text-[#5D4037]">Portfolio</a>
-    <a href="/contact" class="text-3xl font-display font-bold text-[#5D4037]">Contact</a>
-    <a href="tel:+32400000000" class="mt-4 bg-[#5D4037] text-white px-10 py-4 rounded-full text-xl font-bold">Appeler</a>
-  </div>
 </header>
+
+<!-- Mobile Menu Overlay - Outside of header to avoid scroll/padding issues -->
+<div id="mobile-menu" class="fixed inset-0 bg-[#FAF9F6] z-70 flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-500 ease-in-out md:hidden">
+  <button id="close-menu" class="absolute top-8 right-8 p-2 text-[#5D4037]">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+  </button>
+  <a href="/services" class="text-3xl font-display font-bold text-[#5D4037]">Services</a>
+  <a href="/portfolio" class="text-3xl font-display font-bold text-[#5D4037]">Portfolio</a>
+  <a href="/contact" class="text-3xl font-display font-bold text-[#5D4037]">Contact</a>
+  <a href="tel:+32400000000" class="mt-4 bg-[#5D4037] text-white px-10 py-4 rounded-full text-xl font-bold">Appeler</a>
+</div>
 
 <script>
   const header = document.getElementById('main-header');
@@ -53,12 +53,14 @@
   if (openBtn && mobileMenu) {
     openBtn.addEventListener('click', () => {
       mobileMenu.classList.remove('translate-x-full');
+      document.body.classList.add('overflow-hidden');
     });
   }
 
   if (closeBtn && mobileMenu) {
     closeBtn.addEventListener('click', () => {
       mobileMenu.classList.add('translate-x-full');
+      document.body.classList.remove('overflow-hidden');
     });
   }
 
@@ -67,6 +69,7 @@
     menuLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('translate-x-full');
+        document.body.classList.remove('overflow-hidden');
       });
     });
   }
