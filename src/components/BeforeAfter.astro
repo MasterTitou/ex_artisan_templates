@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets';
+import kitchenBefore from '../assets/images/kitchen_before.png';
+import kitchenAfter from '../assets/images/custom_kitchen.png';
+import parquetBefore from '../assets/images/parquet_before.png';
+import parquetAfter from '../assets/images/parquet_liege.png';
+
+const transformations = [
+  {
+    title: "Rénovation de Cuisine Rustique",
+    description: "Transformation d'une cuisine des années 70 en un espace moderne et chaleureux en chêne massif.",
+    before: kitchenBefore,
+    after: kitchenAfter,
+    location: "Seraing"
+  },
+  {
+    title: "Restauration de Parquet de Caractère",
+    description: "Sauvegarde d'un sol en bois ancien avec une pose en Point de Hongrie haut de gamme.",
+    before: parquetBefore,
+    after: parquetAfter,
+    location: "Liège Centre"
+  }
+];
+---
+
+<section class="py-32 bg-[#2D2D2D] text-white">
+  <div class="container mx-auto px-6">
+    
+    <div class="max-w-3xl mb-24 reveal">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-[#5D4037] mb-4">Avant / Après</h2>
+      <p class="text-4xl md:text-6xl font-bold leading-tight mb-8">
+        Le pouvoir de la <span class="italic-serif text-3xl md:text-5xl font-normal text-gray-400">transformation</span>
+      </p>
+      <p class="text-xl text-white/70 max-w-lg">
+        Voyez comment nous redonnons vie à vos espaces avec le bois.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+      {transformations.map((item, index) => (
+        <div class="reveal group" style={`animation-delay: ${0.2 * index}s`}>
+          <div class="relative overflow-hidden rounded-[2.5rem] shadow-2xl bg-black/20">
+            <!-- Side by Side / Hover effect -->
+            <div class="grid grid-cols-2 gap-1 h-[400px] md:h-[500px]">
+              <div class="relative overflow-hidden">
+                <Image src={item.before} alt="Avant" class="w-full h-full object-cover grayscale brightness-75 transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-100" />
+                <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Avant</div>
+              </div>
+              <div class="relative overflow-hidden">
+                <Image src={item.after} alt="Après" class="w-full h-full object-cover transition-all duration-700" />
+                <div class="absolute top-4 right-4 bg-[#5D4037] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Après</div>
+              </div>
+            </div>
+            <!-- Overlay indicator -->
+             <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+                <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-3-3 3-3"/><path d="m6 9 3 3-3 3"/><path d="M21 12H3"/></svg>
+                </div>
+             </div>
+          </div>
+          
+          <div class="mt-10">
+            <h3 class="text-3xl font-bold mb-4">{item.title}</h3>
+            <p class="text-white/60 leading-relaxed max-w-xl mb-6">
+                {item.description}
+            </p>
+            <div class="flex items-center gap-2 text-[#5D4037] text-sm font-bold uppercase tracking-widest">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                {item.location}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
