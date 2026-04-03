@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout 
+	title="M.Menuiserie - Menuisier Artisan à Liège" 
+	description="Menuisier professionnel à Liège proposant services de menuiserie artisanale, parquets et aménagements sur-mesure pour votre intérieur et extérieur. Devis gratuit."
+>
+	<Header />
+	<main>
+		<Hero />
+		<Services />
+		<Portfolio />
+		<Contact />
+	</main>
+	<Footer />
+
+	<!-- Simple Intersection Observer for reveal animations -->
+	<script>
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('reveal');
+					observer.unobserve(entry.target);
+				}
+			});
+		}, { 
+			threshold: 0.1,
+			rootMargin: '0px 0px -10% 0px' 
+		});
+
+		document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+	</script>
+</BaseLayout>

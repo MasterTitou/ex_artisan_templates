@@ -1,0 +1,73 @@
+---
+const projects = [
+  {
+    title: "Cuisine Contemporaine en Chêne",
+    category: "Cuisine sur-mesure",
+    image: "/images/custom_kitchen.png",
+    location: "Chaudfontaine, Liège"
+  },
+  {
+    title: "Parquet Point de Hongrie",
+    category: "Sols d'Exception",
+    image: "/images/parquet_liege.png",
+    location: "Liège, Centre-Ville"
+  },
+  {
+    title: "Bibliothèque Toute Hauteur",
+    category: "Aménagement Intérieur",
+    image: "/images/oak_bookcase.png",
+    location: "Neupré, Liège"
+  }
+];
+---
+
+<section id="portfolio" class="py-32 bg-[#FAF9F6]">
+  <div class="container mx-auto px-6">
+    <div class="max-w-3xl mb-24 reveal">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-[#5D4037] mb-4">Portfolio</h2>
+      <p class="text-4xl md:text-6xl font-bold text-[#2D2D2D] leading-[1.1] mb-8">
+        Réalisations qui <span class="italic-serif text-3xl md:text-5xl font-normal text-gray-400">parlent d'elles-mêmes</span>
+      </p>
+      <p class="text-xl text-[#2D2D2D]/70 leading-relaxed max-w-lg">
+        Découvrez une sélection de mes derniers projets réalisés avec rigueur et passion.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      {projects.map((project, index) => (
+        <div 
+          class="group relative overflow-hidden rounded-3xl reveal"
+          style={`animation-delay: ${0.2 * (index + 1)}s`}
+        >
+          <div class="aspect-[4/5] w-full overflow-hidden">
+            <img 
+              src={project.image} 
+              alt={project.title} 
+              class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+            />
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#2D2D2D] via-[#2D2D2D]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-10">
+            <span class="text-xs font-bold uppercase tracking-widest text-white/60 mb-2">{project.category}</span>
+            <h3 class="text-2xl font-bold text-white mb-2">{project.title}</h3>
+            <p class="text-white/80 text-sm flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              {project.location}
+            </p>
+          </div>
+          <!-- Reveal caption on mobile or always visible partly -->
+          <div class="p-6 bg-white flex flex-col md:hidden">
+              <h3 class="text-xl font-bold text-[#2D2D2D]">{project.title}</h3>
+              <p class="text-sm text-gray-500">{project.category}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-20 flex justify-center reveal">
+        <a href="#contact" class="inline-flex items-center gap-4 text-lg font-bold text-[#5D4037] hover:gap-6 transition-all group">
+            Découvrir plus de projets
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-2 transition-transform"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+    </div>
+  </div>
+</section>

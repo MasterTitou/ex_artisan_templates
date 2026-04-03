@@ -1,0 +1,66 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Menuisier artisan à Liège spécialisé dans la conception sur-mesure d'espaces intérieurs et extérieurs. Qualité, précision et passion du bois." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} | Menuiserie Artisanale Liège</title>
+
+		<!-- SEO Keywords -->
+		<meta name="keywords" content="menuisier liège, menuiserie artisanale, cuisines sur mesure liège, pose parquet liège, aménagement intérieur liège, menuisier bois liège" />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://menuisier-liege.be/" /> <!-- Update with real URL if needed -->
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="/images/og-image.jpg" />
+
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Serif:ital@0;1&family=Inter:wght@100..900&display=swap" rel="stylesheet">
+	</head>
+	<body class="bg-[#FAF9F6] text-[#2D2D2D] font-['Inter'] selection:bg-[#5D4037] selection:text-white overflow-x-hidden">
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--primary: #5D4037;
+		--secondary: #FAF9F6;
+		--accent: #2E3B2E;
+	}
+
+	h1, h2, h3, .font-display {
+		font-family: 'Bricolage Grotesque', sans-serif;
+	}
+
+    .italic-serif {
+        font-family: 'Instrument Serif', serif;
+    }
+
+	/* Custom animations */
+	@keyframes reveal {
+		from { opacity: 0; transform: translateY(20px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	.reveal {
+		animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+	}
+</style>
