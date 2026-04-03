@@ -1,6 +1,6 @@
 ---
 ---
-<header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6">
+<header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-4 bg-white shadow-sm">
   <div class="container mx-auto px-6 flex justify-between items-center text-[#2D2D2D]">
     <a href="/" class="text-2xl font-bold tracking-tight font-display hover:opacity-80 transition-opacity">
         <span class="text-[#5D4037]">M.</span>Menuiserie
@@ -38,14 +38,13 @@
   const openBtn = document.getElementById('mobile-menu-btn');
   const closeBtn = document.getElementById('close-menu');
 
-  // Header scroll effect
+  // Header scroll effect - keep it simple since we have bg white now
   window.addEventListener('scroll', () => {
     if (header && window.scrollY > 50) {
-      header.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-4');
-      header.classList.remove('py-6');
+      header.classList.add('backdrop-blur-md', 'bg-white/90');
     } else if (header) {
-      header.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-4');
-      header.classList.add('py-6');
+      header.classList.remove('backdrop-blur-md', 'bg-white/90');
+      header.classList.add('bg-white');
     }
   });
 
