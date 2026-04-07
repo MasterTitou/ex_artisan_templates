@@ -1,6 +1,6 @@
 ---
 ---
-<header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-4 bg-white shadow-sm">
+<header id="main-header" class="fixed top-0 left-0 w-full z-40 transition-all duration-500 py-4 bg-white/80 backdrop-blur-md shadow-sm">
   <div class="container mx-auto px-6 flex justify-between items-center text-[#2D2D2D]">
     <a href="/" class="text-2xl font-bold tracking-tight font-display hover:opacity-80 transition-opacity">
         <span class="text-[#5D4037]">M.</span>Menuiserie
@@ -15,61 +15,67 @@
       </a>
     </nav>
 
-    <button id="mobile-menu-btn" class="md:hidden p-2 text-[#5D4037]" aria-label="Menu">
+    <button id="mobile-menu-btn" class="md:hidden p-2 text-[#5D4037] transition-transform active:scale-95" aria-label="Menu">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
     </button>
   </div>
 </header>
 
-<!-- Mobile Menu Overlay - Outside of header to avoid scroll/padding issues -->
-<div id="mobile-menu" class="fixed inset-0 bg-[#FAF9F6] z-70 flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-500 ease-in-out md:hidden">
-  <button id="close-menu" class="absolute top-8 right-8 p-2 text-[#5D4037]">
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-0 bg-[#FAF9F6] z-50 flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-500 ease-in-out md:hidden overflow-hidden">
+  <button id="close-menu" class="absolute top-8 right-8 p-2 text-[#5D4037] transition-transform active:scale-95">
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
   </button>
-  <a href="/services" class="text-3xl font-display font-bold text-[#5D4037]">Services</a>
-  <a href="/portfolio" class="text-3xl font-display font-bold text-[#5D4037]">Portfolio</a>
-  <a href="/contact" class="text-3xl font-display font-bold text-[#5D4037]">Contact</a>
-  <a href="tel:+32400000000" class="mt-4 bg-[#5D4037] text-white px-10 py-4 rounded-full text-xl font-bold">Appeler</a>
+  <nav class="flex flex-col items-center gap-8">
+      <a href="/services" class="text-3xl font-display font-bold text-[#5D4037]">Services</a>
+      <a href="/portfolio" class="text-3xl font-display font-bold text-[#5D4037]">Portfolio</a>
+      <a href="/contact" class="text-3xl font-display font-bold text-[#5D4037]">Contact</a>
+      <a href="tel:+32400000000" class="mt-4 bg-[#5D4037] text-white px-10 py-4 rounded-full text-xl font-bold shadow-lg shadow-[#5D4037]/20 transition-transform active:scale-95">Appeler</a>
+  </nav>
 </div>
 
 <script>
-  const header = document.getElementById('main-header');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const openBtn = document.getElementById('mobile-menu-btn');
-  const closeBtn = document.getElementById('close-menu');
+  function setupHeader() {
+    const header = document.getElementById('main-header');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const openBtn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('close-menu');
 
-  // Header scroll effect - keep it simple since we have bg white now
-  window.addEventListener('scroll', () => {
-    if (header && window.scrollY > 50) {
-      header.classList.add('backdrop-blur-md', 'bg-white/90');
-    } else if (header) {
-      header.classList.remove('backdrop-blur-md', 'bg-white/90');
-      header.classList.add('bg-white');
-    }
-  });
+    // Header scroll effect
+    const handleScroll = () => {
+      if (header && window.scrollY > 20) {
+        header.classList.add('py-3', 'shadow-md');
+        header.classList.remove('py-4', 'shadow-sm');
+      } else if (header) {
+        header.classList.remove('py-3', 'shadow-md');
+        header.classList.add('py-4', 'shadow-sm');
+      }
+    };
 
-  // Mobile menu toggle
-  if (openBtn && mobileMenu) {
-    openBtn.addEventListener('click', () => {
-      mobileMenu.classList.remove('translate-x-full');
-      document.body.classList.add('overflow-hidden');
+    window.addEventListener('scroll', handleScroll);
+
+    // Mobile menu toggle
+    const openMenu = () => {
+      mobileMenu?.classList.remove('translate-x-full');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeMenu = () => {
+      mobileMenu?.classList.add('translate-x-full');
+      document.body.style.overflow = '';
+    };
+
+    openBtn?.addEventListener('click', openMenu);
+    closeBtn?.addEventListener('click', closeMenu);
+
+    mobileMenu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
     });
   }
 
-  if (closeBtn && mobileMenu) {
-    closeBtn.addEventListener('click', () => {
-      mobileMenu.classList.add('translate-x-full');
-      document.body.classList.remove('overflow-hidden');
-    });
-  }
+  // Initial setup
+  setupHeader();
 
-  if (mobileMenu) {
-    const menuLinks = mobileMenu.querySelectorAll('a');
-    menuLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('translate-x-full');
-        document.body.classList.remove('overflow-hidden');
-      });
-    });
-  }
+  // Re-run on ViewTransitions navigation
+  document.addEventListener('astro:after-swap', setupHeader);
 </script>
